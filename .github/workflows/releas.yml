@@ -66,6 +66,9 @@ jobs:
           prerelease: false
 
       - name: chek loc
+        run: ls
+
+      - name: chek loc
         run: ls /Users/runner/work/pgcodekeeper/pgcodekeeper/ru.taximaxim.codekeeper.mainapp/product/rcp/target/product
 
       - name: Upload Release linux build
