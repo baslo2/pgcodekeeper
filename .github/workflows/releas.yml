@@ -33,6 +33,9 @@ jobs:
       - name: decode keystore
         run: base64 --decode -i tmp/keystore/key.txt -o tmp/keystore/key.jks
 
+      - name: check loc
+        run: ls
+
       - name: build
         run: mvn verify -DskipTests -P jenkins
 
