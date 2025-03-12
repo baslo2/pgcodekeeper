@@ -65,6 +65,9 @@ jobs:
           draft: false
           prerelease: false
 
+      - name: check loc
+        run: ls ru.taximaxim.codekeeper.mainapp/product/rcp/target/products
+
       - name: Upload Release linux build
         uses: actions/upload-release-asset@v1
         env:
