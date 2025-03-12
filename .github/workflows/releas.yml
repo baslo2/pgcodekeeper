@@ -54,6 +54,9 @@ jobs:
       - name: set cli build name
         run: echo "CLI_BUILD=pgCodeKeeper-cli-${{ env.RELEASE_VERSION }}.zip" >> $GITHUB_ENV
 
+      - name: set updatesite name
+        run: echo "UPDATESITE=pgCodeKeeper-updatesite-${{ env.RELEASE_VERSION }}.zip" >> $GITHUB_ENV
+
       - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
@@ -61,7 +64,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Токен для доступа к GitHub API
         with:
           tag_name: ${{ env.RELEASE_VERSION }}
-          release_name: Release ${{ env.RELEASE_VERSION }}
+          release_name: pgCodeKeeper ${{ env.RELEASE_VERSION }}
           draft: false
           prerelease: false
 
@@ -96,4 +99,14 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/standalone/target/products/${{ env.CLI_BUILD }}
           asset_name: ${{ env.CLI_BUILD }}
+          asset_content_type: application/zip
+
+      - name: Upload Release updatesite
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/products/${{ env.UPDATESITE }}
+          asset_name: ${{ env.UPDATESITE }}
           asset_content_type: application/zip
