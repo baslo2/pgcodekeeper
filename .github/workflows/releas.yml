@@ -69,7 +69,7 @@ jobs:
         run: ls
 
       - name: chek loc
-        run: ls /Users/runner/work/pgcodekeeper/pgcodekeeper/ru.taximaxim.codekeeper.mainapp/product/rcp/target/product
+        run: ls /ru.taximaxim.codekeeper.mainapp/product/rcp/target/product
 
       - name: Upload Release linux build
         uses: actions/upload-release-asset@v1
