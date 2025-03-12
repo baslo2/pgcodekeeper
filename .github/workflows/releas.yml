@@ -88,10 +88,6 @@ jobs:
           asset_name: ${{ env.WINDOWS_BUILD }}
           asset_content_type: application/zip
 
-      - name: List files in the repository after build
-        run: |
-          ls /Users/runner/work/tycho-example/tycho-example/releng/com.vogella.tycho.product/target/products
-
       - name: Upload Release cli build
         uses: actions/upload-release-asset@v1
         env:
