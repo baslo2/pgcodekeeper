@@ -19,6 +19,9 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
 
+      - name: check loc
+        run: ls
+
       - name: decode jarsigner key
         uses: 1arp/create-a-file-action@0.4.5
         with:
