@@ -65,19 +65,13 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: chek loc
-        run: ls
-
-      - name: chek loc
-        run: ls /ru.taximaxim.codekeeper.mainapp/product/rcp/target/product
-
       - name: Upload Release linux build
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/product/${{ env.LINUX_BUILD }}
+          asset_path: ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/${{ env.LINUX_BUILD }}
           asset_name: ${{ env.LINUX_BUILD }}
           asset_content_type: application/zip
 
@@ -87,7 +81,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/product/${{ env.WINDOWS_BUILD }}
+          asset_path: ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/${{ env.WINDOWS_BUILD }}
           asset_name: ${{ env.WINDOWS_BUILD }}
           asset_content_type: application/zip
 
@@ -101,6 +95,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/standalone/target/product/${{ env.CLI_BUILD }}
+          asset_path: ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/standalone/target/products/${{ env.CLI_BUILD }}
           asset_name: ${{ env.CLI_BUILD }}
           asset_content_type: application/zip
