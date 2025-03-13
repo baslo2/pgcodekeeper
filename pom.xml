@@ -66,9 +66,9 @@
                         <version>${maven.jarsigner.version}</version>
                         <configuration>
                             <keystore>${keystore}</keystore>
-                            <alias>pgCodeKeeper</alias>
-                            <storepass>pgCodeKeeper</storepass>
-                            <keypass>pgCodeKeeper</keypass>
+                            <alias>tjs</alias>
+                            <storepass>123456</storepass>
+                            <keypass>123456</keypass>
                             <arguments>
                                 <argument>-sigalg</argument>
                                 <argument>SHA512withRSA</argument>
