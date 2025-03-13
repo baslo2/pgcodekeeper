@@ -2,6 +2,8 @@ name: Release Workflow
 
 on:
   push:
+    tags:
+      - 'v*.*.*'
 
 jobs:
   build:
@@ -15,12 +17,9 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'adopt'
-          java-version: '21'
+          java-version: '17'
 
-      - name: check loc
-        run: ls
-
-      - name: decode jarsigner key
+      - name: get jarsigner key
         uses: 1arp/create-a-file-action@0.4.5
         with:
           path: /tmp/keystore
@@ -31,11 +30,8 @@ jobs:
       - name: decode keystore
         run: base64 --decode -i tmp/keystore/key.txt -o tmp/keystore/key.jks
 
-      - name: check loc
-        run: ls
-
       - name: build
-        run: mvn verify -DskipTests -P jenkins
+        run: mvn verify -DskipTests -P deploy-github -Dkeystore=${{ github.workspace }}/tmp/keystore/key.jks
 
       - name: Set version
         run: echo "RELEASE_VERSION=$(echo ${GITHUB_REF#refs/*/} | cut -c 2-)" >> $GITHUB_ENV
@@ -57,18 +53,19 @@ jobs:
 
       - name: Create GitHub Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: comnoco/create-release-action@v2.0.5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ env.RELEASE_VERSION }}
           release_name: pgCodeKeeper ${{ env.RELEASE_VERSION }}
           draft: false
           prerelease: false
 
-      - name: check loc
-        run: ls ru.taximaxim.codekeeper.mainapp/product/rcp/target/products
-
       - name: Upload Release linux build
-        uses: actions/upload-release-asset@v1
+        uses: sekwah41/upload-release-assets@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/${{ env.LINUX_BUILD }}
@@ -76,7 +73,9 @@ jobs:
           asset_content_type: application/zip
 
       - name: Upload Release windows build
-        uses: actions/upload-release-asset@v1
+        uses: sekwah41/upload-release-assets@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/${{ env.WINDOWS_BUILD }}
@@ -84,7 +83,9 @@ jobs:
           asset_content_type: application/zip
 
       - name: Upload Release cli build
-        uses: actions/upload-release-asset@v1
+        uses: sekwah41/upload-release-assets@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/standalone/target/products/${{ env.CLI_BUILD }}
@@ -92,7 +93,9 @@ jobs:
           asset_content_type: application/zip
 
       - name: Upload Release updatesite
-        uses: actions/upload-release-asset@v1
+        uses: sekwah41/upload-release-assets@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/${{ env.UPDATESITE }}
