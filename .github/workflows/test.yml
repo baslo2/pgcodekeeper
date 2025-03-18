@@ -44,4 +44,4 @@ jobs:
       - name: check git command
         run: |
          cd ${{ github.workspace }}/test
-         git remote show origin HEAD
+         git remote show origin
