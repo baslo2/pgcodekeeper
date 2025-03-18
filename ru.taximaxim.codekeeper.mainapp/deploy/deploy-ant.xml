@@ -8,6 +8,7 @@
 		<sequential>
 			<echo message="cloning site repo" />
 			<echo message="${site-repo}" />
+			<echo message="${site-dir}" />
 			<exec executable="git" failonerror="true">
 				<arg value="clone" />
 				<arg value="--depth=1" />
