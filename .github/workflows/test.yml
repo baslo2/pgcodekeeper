@@ -1,0 +1,30 @@
+name: Test push to other repo
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: checkout
+        uses: actions/@checkout4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: build
+        run: mvn verify -DskipTests
+
+      - name: Checkout tools repo
+        uses: actions/checkout@v4
+        with:
+          repository: baslo2/hero
+          path: test
+
+      - name: check loc
+        run: ls
