@@ -9,7 +9,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: checkout
-        uses: actions/@checkout4
+        uses: actions/checkout@v4
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
