@@ -52,7 +52,7 @@ jobs:
          git status
 
       - name: copy files
-        run: copy ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository ${{ github.workspace }}/test/repository
+        run: cp ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository ${{ github.workspace }}/test/repository
 
       - name: check loc
         run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/
