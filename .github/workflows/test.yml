@@ -17,6 +17,13 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Checkout tools repo
+        uses: actions/checkout@v4
+        with:
+          repository: pgcodekeeper/pgcodekeeper.github.io
+          token:  ${{ secrets.API_TOKEN_GITHUB }}
+          path: test
+
       - name: setup git config
         run: |
           git config user.name "GitHub Actions Bot"
