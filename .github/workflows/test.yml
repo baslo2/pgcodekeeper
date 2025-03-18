@@ -18,44 +18,44 @@ jobs:
           java-version: '17'
 
       - name: build
-        run: mvn verify -DskipTests
+        run: mvn clean deploy -DskipTests -P deploy-github
 
-      - name: Checkout tools repo
-        uses: actions/checkout@v4
-        with:
-          repository: baslo2/hero
-          token:  ${{ secrets.API_TOKEN_GITHUB }}
-          path: test
+      # - name: Checkout tools repo
+      #   uses: actions/checkout@v4
+      #   with:
+      #     repository: baslo2/hero
+      #     token:  ${{ secrets.API_TOKEN_GITHUB }}
+      #     path: test
 
-      - name: check loc
-        run: ls ${{ github.workspace }}/test
+      # - name: check loc
+      #   run: ls ${{ github.workspace }}/test
 
-      - name: add new dir
-        run: mkdir -p ${{ github.workspace }}/test/updatesite
+      # - name: add new dir
+      #   run: mkdir -p ${{ github.workspace }}/test/updatesite
 
-      - name: check loc
-        run: ls ${{ github.workspace }}/test
+      # - name: check loc
+      #   run: ls ${{ github.workspace }}/test
 
-      - name: setup git config
-        run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
+      # - name: setup git config
+      #   run: |
+      #     git config user.name "GitHub Actions Bot"
+      #     git config user.email "<>"
 
-      - name: check git command
-        run: |
-         cd ${{ github.workspace }}/test
-         git remote show origin
+      # - name: check git command
+      #   run: |
+      #    cd ${{ github.workspace }}/test
+      #    git remote show origin
 
-      - name: check git command
-        run: |
-         cd ${{ github.workspace }}/test
-         git status
+      # - name: check git command
+      #   run: |
+      #    cd ${{ github.workspace }}/test
+      #    git status
 
-      - name: copy files
-        run: cp ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository ${{ github.workspace }}/test/repository
+      # - name: copy files
+      #   run: cp ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository ${{ github.workspace }}/test/repository
 
-      - name: check loc
-        run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/
+      # - name: check loc
+      #   run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/
 
-      - name: check loc
-        run: ls ${{ github.workspace }}/test/
+      # - name: check loc
+      #   run: ls ${{ github.workspace }}/test/
