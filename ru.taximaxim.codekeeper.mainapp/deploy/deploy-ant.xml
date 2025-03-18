@@ -8,13 +8,13 @@
 		<sequential>
 			<echo message="cloning site repo" />
 			<echo message="${site-repo}" />
-			<exec executable=git failonerror=true>
-				<arg value=clone />
-				<arg value=--depth=1 />
-				<arg value=--no-tags />
-				<arg value=--single-branch />
-				<arg value=${site-repo} />
-				<arg value=${site-dir} />
+			<exec executable="git" failonerror="true">
+				<arg value="clone" />
+				<arg value="--depth=1" />
+				<arg value="--no-tags" />
+				<arg value="--single-branch" />
+				<arg value="${site-repo}" />
+				<arg value="${site-dir}" />
 			</exec>
 
 			<echo message="updating p2 site" />
