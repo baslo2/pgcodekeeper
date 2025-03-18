@@ -18,7 +18,7 @@ jobs:
           java-version: '17'
 
       - name: build
-        run: mvn clean deploy -DskipTests -P deploy-github
+        run: mvn clean deploy -DskipTests -P deploy-github -X
 
       # - name: Checkout tools repo
       #   uses: actions/checkout@v4
