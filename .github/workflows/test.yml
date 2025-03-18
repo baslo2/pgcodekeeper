@@ -24,6 +24,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: baslo2/hero
+          token:  ${{ secrets.API_TOKEN_GITHUB }}
           path: test
 
       - name: check loc
@@ -35,7 +36,12 @@ jobs:
       - name: check loc
         run: ls ${{ github.workspace }}/test
 
+      - name: setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+
       - name: check git command
         run: |
          cd ${{ github.workspace }}/test
-         git status
+         git remote show origin HEAD
