@@ -27,4 +27,4 @@ jobs:
           path: test
 
       - name: check loc
-        run: ls /test
+        run: ls ${{ github.workspace }}/test
