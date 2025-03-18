@@ -31,3 +31,6 @@ jobs:
 
       - name: add new dir
         run: mkdir -p ${{ github.workspace }}/test/updatesite
+
+      - name: check loc
+        run: ls ${{ github.workspace }}/test
