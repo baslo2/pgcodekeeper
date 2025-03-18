@@ -1,7 +1,7 @@
 name: Test push to other repo
 
 on:
-  pull_request:
+  push:
     branches: [ master ]
 
 jobs:
