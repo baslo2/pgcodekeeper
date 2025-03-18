@@ -50,3 +50,12 @@ jobs:
         run: |
          cd ${{ github.workspace }}/test
          git status
+
+      - name: copy files
+        run: copy ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository ${{ github.workspace }}/test/repository
+
+      - name: check loc
+        run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/
+
+      - name: check loc
+        run: ls ${{ github.workspace }}/test/
