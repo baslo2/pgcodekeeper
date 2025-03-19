@@ -73,10 +73,15 @@ jobs:
           cd ${{ github.workspace }}/test
           git branch test
 
-#      - name: git update
-#        run: |
-#          cd ${{ github.workspace }}/test
-#          git add updatesite
+      - name: checkout
+        run: |
+          cd ${{ github.workspace }}/test
+          git checkout test
+
+      - name: git update
+        run: |
+          cd ${{ github.workspace }}/test
+          git add updatesite
 
       - name: check git command
         run: |
@@ -88,7 +93,7 @@ jobs:
           cd ${{ github.workspace }}/test
           git remote show origin
 
-#      - name: git push
-#        run: |
-#          cd ${{ github.workspace }}/test
-#          git push origin HEAD
+      - name: git push
+        run: |
+          cd ${{ github.workspace }}/test
+          git push origin HEAD
