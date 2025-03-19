@@ -9,6 +9,7 @@
 <!--			<echo message="cloning site repo" />-->
 			<echo message="${site-repo}" />
 			<echo message="${site-dir}" />
+			<echo message="${updatesite-dir}" />
 <!--			<exec executable="git" failonerror="true">-->
 <!--				<arg value="clone" />-->
 <!--				<arg value="&#45;&#45;depth=1" />-->
@@ -22,6 +23,7 @@
 			<delete includeemptydirs="true">
 				<fileset dir="${site-dir}/update" includes="**/*" excludes="index.html" />
 			</delete>
+			<echo message="delete finished" />
 			<copy todir="${site-dir}/update">
 				<fileset dir="${updatesite-dir}/repository" />
 			</copy>
