@@ -72,7 +72,6 @@ jobs:
         run: |
           cd ${{ github.workspace }}/test
           git add updatesite
-          
 
       - name: check git command
         run: |
@@ -82,4 +81,4 @@ jobs:
       - name: git push
         run: |
           cd ${{ github.workspace }}/test
-          git push origen
+          git push origin
