@@ -71,7 +71,7 @@ jobs:
       - name: check git command
         run: |
           cd ${{ github.workspace }}/test
-          git update updatesite
+          git add updatesite
           
 
       - name: check git command
