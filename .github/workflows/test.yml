@@ -11,6 +11,13 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
+      - name: Checkout tools repo
+        uses: actions/checkout@v4
+        with:
+          repository: baslo2/tycho-example
+          token:  ${{ secrets.API_TOKEN_GITHUB }}
+          path: ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -18,14 +25,7 @@ jobs:
           java-version: '17'
 
       - name: build
-        run: mvn clean deploy -DskipTests
-
-      - name: Checkout tools repo
-        uses: actions/checkout@v4
-        with:
-          repository: baslo2/tycho-example
-          token:  ${{ secrets.API_TOKEN_GITHUB }}
-          path: test
+        run: mvn clean deploy -DskipTests -P deploy-github
 
       - name: check loc
         run: ls ${{ github.workspace }}/test
@@ -52,7 +52,7 @@ jobs:
 #          git status
 #
 #      - name: copy files
-#        run: cp ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/p2.index ${{ github.workspace }}/test/updatesite/repository/p2.index
+#        run: cp ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/p2.index ${{ github.workspace }}/test/update/repository/p2.index
 #
 #      - name: check loc
 #        run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/
@@ -78,27 +78,27 @@ jobs:
 #          cd ${{ github.workspace }}/test
 #          git checkout test
 
-      - name: git update
-        run: |
-          cd ${{ github.workspace }}/test
-          git add update
-
-      - name: commit
-        run: |
-          cd ${{ github.workspace }}/test
-          git commit -m test
-
-      - name: check git command
-        run: |
-          cd ${{ github.workspace }}/test
-          git status
-
-      - name: check git command
-        run: |
-          cd ${{ github.workspace }}/test
-          git remote show origin
-
-      - name: git push
-        run: |
-          cd ${{ github.workspace }}/test
-          git push origin HEAD
+#      - name: git update
+#        run: |
+#          cd ${{ github.workspace }}/test
+#          git add update
+#
+#      - name: commit
+#        run: |
+#          cd ${{ github.workspace }}/test
+#          git commit -m test
+#
+#      - name: check git command
+#        run: |
+#          cd ${{ github.workspace }}/test
+#          git status
+#
+#      - name: check git command
+#        run: |
+#          cd ${{ github.workspace }}/test
+#          git remote show origin
+#
+#      - name: git push
+#        run: |
+#          cd ${{ github.workspace }}/test
+#          git push origin HEAD

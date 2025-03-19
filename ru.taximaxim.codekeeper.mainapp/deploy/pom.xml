@@ -18,7 +18,7 @@
     <properties>
         <!-- used by deploy-ant.xml -->
         <site-repo>git@github.com:pgcodekeeper/pgcodekeeper.github.io.git</site-repo>
-        <site-dir>${project.build.directory}/pgcodekeeper.github.io</site-dir>
+        <site-dir>${project.build.directory}/tycho-example</site-dir>
         <updatesite-dir>${project.basedir}/../updatesite/target</updatesite-dir>
         <product-dir>${project.basedir}/../product</product-dir>
     </properties>

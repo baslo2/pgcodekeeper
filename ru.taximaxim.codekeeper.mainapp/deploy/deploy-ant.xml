@@ -6,20 +6,20 @@
 
 	<target name="default">
 		<sequential>
-			<echo message="cloning site repo" />
-			<echo message="${site-repo}" />
-			<echo message="${site-dir}" />
-			<exec executable="git" failonerror="true">
-				<arg value="clone" />
-				<arg value="--depth=1" />
-				<arg value="--no-tags" />
-				<arg value="--single-branch" />
-				<arg value="${site-repo}" />
-				<arg value="${site-dir}" />
-			</exec>
+<!--			<echo message="cloning site repo" />-->
+<!--			<echo message="${site-repo}" />-->
+<!--			<echo message="${site-dir}" />-->
+<!--			<exec executable="git" failonerror="true">-->
+<!--				<arg value="clone" />-->
+<!--				<arg value="&#45;&#45;depth=1" />-->
+<!--				<arg value="&#45;&#45;no-tags" />-->
+<!--				<arg value="&#45;&#45;single-branch" />-->
+<!--				<arg value="${site-repo}" />-->
+<!--				<arg value="${site-dir}" />-->
+<!--			</exec>-->
 
 			<echo message="updating p2 site" />
-<!-- 			<delete includeemptydirs="true">
+			<delete includeemptydirs="true">
 				<fileset dir="${site-dir}/update" includes="**/*" excludes="index.html" />
 			</delete>
 			<copy todir="${site-dir}/update">
@@ -42,9 +42,9 @@
 			<echo message="pushing site repo" />
 			<exec executable="git" dir="${site-dir}" failonerror="true">
 				<arg value="push" />
-				<arg value="${site-repo}" />
+				<arg value="origin" />
 				<arg value="HEAD" />
-			</exec> -->
+			</exec>
 		</sequential>
 	</target>
 </project>
