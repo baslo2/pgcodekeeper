@@ -83,6 +83,11 @@ jobs:
           cd ${{ github.workspace }}/test
           git status
 
+      - name: check git command
+        run: |
+          cd ${{ github.workspace }}/test
+          git remote show origin
+
 #      - name: git push
 #        run: |
 #          cd ${{ github.workspace }}/test
