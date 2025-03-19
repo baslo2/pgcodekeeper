@@ -83,6 +83,11 @@ jobs:
           cd ${{ github.workspace }}/test
           git add updatesite
 
+      - name: commit
+        run: |
+          cd ${{ github.workspace }}/test
+          git commit -m test
+
       - name: check git command
         run: |
           cd ${{ github.workspace }}/test
