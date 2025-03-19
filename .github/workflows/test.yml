@@ -67,3 +67,14 @@ jobs:
         run: |
           cd ${{ github.workspace }}/test
           git status
+
+      - name: check git command
+        run: |
+          cd ${{ github.workspace }}/test
+          git update updatesite
+          
+
+      - name: check git command
+        run: |
+          cd ${{ github.workspace }}/test
+          git status
