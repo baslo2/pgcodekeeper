@@ -67,18 +67,23 @@ jobs:
         run: |
           cd ${{ github.workspace }}/test
           git status
-
-      - name: git update
+          
+      - name: new branch
         run: |
-          cd ${{ github.workspace }}/test
-          git add updatesite
+          cd ${{ gitnub.workspace }}/test
+          git branch test
+
+#      - name: git update
+#        run: |
+#          cd ${{ github.workspace }}/test
+#          git add updatesite
 
       - name: check git command
         run: |
           cd ${{ github.workspace }}/test
           git status
 
-      - name: git push
-        run: |
-          cd ${{ github.workspace }}/test
-          git push origin HEAD
+#      - name: git push
+#        run: |
+#          cd ${{ github.workspace }}/test
+#          git push origin HEAD
