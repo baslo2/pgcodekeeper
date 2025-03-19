@@ -24,17 +24,20 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: check loc
+        run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/
+
+      - name: check loc
+        run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/
+
       - name: build
         run: mvn clean deploy -DskipTests -P deploy-github
 
-      - name: check loc
-        run: ls ${{ github.workspace }}/test
-
-      - name: add new dir
-        run: mkdir -p ${{ github.workspace }}/test/update/
-
-      - name: check loc
-        run: ls ${{ github.workspace }}/test
+#      - name: add new dir
+#        run: mkdir -p ${{ github.workspace }}/test/update/
+#
+#      - name: check loc
+#        run: ls ${{ github.workspace }}/test
 
 #      - name: setup git config
 #        run: |
