@@ -31,7 +31,7 @@ jobs:
         run: ls ${{ github.workspace }}/test
 
       - name: add new dir
-        run: mkdir -p ${{ github.workspace }}/test/updatesite/repository
+        run: mkdir -p ${{ github.workspace }}/test/update/
 
       - name: check loc
         run: ls ${{ github.workspace }}/test
@@ -41,32 +41,32 @@ jobs:
 #          git config user.name "GitHub Actions Bot"
 #          git config user.email "<>"
 
-      - name: check git command
-        run: |
-         cd ${{ github.workspace }}/test
-         git remote show origin
+#      - name: check git command
+#        run: |
+#         cd ${{ github.workspace }}/test
+#         git remote show origin
+#
+#      - name: check git command
+#        run: |
+#          cd ${{ github.workspace }}/test
+#          git status
+#
+#      - name: copy files
+#        run: cp ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/p2.index ${{ github.workspace }}/test/updatesite/repository/p2.index
+#
+#      - name: check loc
+#        run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/
 
-      - name: check git command
-        run: |
-          cd ${{ github.workspace }}/test
-          git status
-
-      - name: copy files
-        run: cp ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/p2.index ${{ github.workspace }}/test/updatesite/repository/p2.index
-
-      - name: check loc
-        run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/
-
-      - name: check loc
-        run: ls ${{ github.workspace }}/test/
-
-      - name: check loc
-        run: ls ${{ github.workspace }}/test/updatesite/repository
-
-      - name: check git command
-        run: |
-          cd ${{ github.workspace }}/test
-          git status
+#      - name: check loc
+#        run: ls ${{ github.workspace }}/test/
+#
+#      - name: check loc
+#        run: ls ${{ github.workspace }}/test/updatesite/repository
+#
+#      - name: check git command
+#        run: |
+#          cd ${{ github.workspace }}/test
+#          git status
           
 #      - name: new branch
 #        run: |
@@ -81,7 +81,7 @@ jobs:
       - name: git update
         run: |
           cd ${{ github.workspace }}/test
-          git add updatesite
+          git add update
 
       - name: commit
         run: |
