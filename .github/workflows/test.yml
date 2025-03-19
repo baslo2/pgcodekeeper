@@ -81,4 +81,4 @@ jobs:
       - name: git push
         run: |
           cd ${{ github.workspace }}/test
-          git push origin
+          git push origin HEAD
