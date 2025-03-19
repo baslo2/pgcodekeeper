@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -17,57 +17,48 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      # - name: Checkout tools repo
-      #   uses: actions/checkout@v4
-      #   with:
-      #     repository: pgcodekeeper/pgcodekeeper.github.io
-      #     token:  ${{ secrets.API_TOKEN_GITHUB }}
-      #     path: test
+      - name: build
+        run: mvn clean deploy -DskipTests -P
+
+      - name: Checkout tools repo
+        uses: actions/checkout@v4
+        with:
+          repository: baslo2/hero
+          token:  ${{ secrets.API_TOKEN_GITHUB }}
+          path: test
+
+      - name: check loc
+        run: ls ${{ github.workspace }}/test
+
+      - name: add new dir
+        run: mkdir -p ${{ github.workspace }}/test/updatesite
+
+      - name: check loc
+        run: ls ${{ github.workspace }}/test
 
       - name: setup git config
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
 
-      - name: build
-        run: mvn clean deploy -DskipTests -P deploy-github -X
+      - name: check git command
+        run: |
+         cd ${{ github.workspace }}/test
+         git remote show origin
 
-      # - name: Checkout tools repo
-      #   uses: actions/checkout@v4
-      #   with:
-      #     repository: baslo2/hero
-      #     token:  ${{ secrets.API_TOKEN_GITHUB }}
-      #     path: test
+      - name: check git command
+        run: |
+         cd ${{ github.workspace }}/test
+         git status
 
-      # - name: check loc
-      #   run: ls ${{ github.workspace }}/test
+      - name: copy files
+        run: cp ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/p2.index ${{ github.workspace }}/test/repository/p2.index
 
-      # - name: add new dir
-      #   run: mkdir -p ${{ github.workspace }}/test/updatesite
+      - name: check loc
+        run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/
 
-      # - name: check loc
-      #   run: ls ${{ github.workspace }}/test
+      - name: check loc
+        run: ls ${{ github.workspace }}/test/
 
-      # - name: setup git config
-      #   run: |
-      #     git config user.name "GitHub Actions Bot"
-      #     git config user.email "<>"
-
-      # - name: check git command
-      #   run: |
-      #    cd ${{ github.workspace }}/test
-      #    git remote show origin
-
-      # - name: check git command
-      #   run: |
-      #    cd ${{ github.workspace }}/test
-      #    git status
-
-      # - name: copy files
-      #   run: cp ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository ${{ github.workspace }}/test/repository
-
-      # - name: check loc
-      #   run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/
-
-      # - name: check loc
-      #   run: ls ${{ github.workspace }}/test/
+      - name: check loc
+        run: ls ${{ github.workspace }}/test/repository
