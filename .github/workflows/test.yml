@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: baslo2/tycho-example
-          token:  ${{ secrets.API_TOKEN_GITHUB }}
+#          token:  ${{ secrets.API_TOKEN_GITHUB }}
           path: test
 
       - name: check loc
