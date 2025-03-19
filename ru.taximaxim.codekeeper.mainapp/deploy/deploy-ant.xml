@@ -7,8 +7,8 @@
 	<target name="default">
 		<sequential>
 <!--			<echo message="cloning site repo" />-->
-<!--			<echo message="${site-repo}" />-->
-<!--			<echo message="${site-dir}" />-->
+			<echo message="${site-repo}" />
+			<echo message="${site-dir}" />
 <!--			<exec executable="git" failonerror="true">-->
 <!--				<arg value="clone" />-->
 <!--				<arg value="&#45;&#45;depth=1" />-->

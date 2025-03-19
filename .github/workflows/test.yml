@@ -31,7 +31,7 @@ jobs:
         run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/
 
       - name: build
-        run: mvn clean deploy -DskipTests -P deploy-github
+        run: mvn clean deploy -DskipTests -P deploy-github -X
 
 #      - name: add new dir
 #        run: mkdir -p ${{ github.workspace }}/test/update/
