@@ -23,7 +23,7 @@ jobs:
       - name: Checkout tools repo
         uses: actions/checkout@v4
         with:
-          repository: baslo2/hero
+          repository: baslo2/tycho-example
           token:  ${{ secrets.API_TOKEN_GITHUB }}
           path: test
 
@@ -68,15 +68,15 @@ jobs:
           cd ${{ github.workspace }}/test
           git status
           
-      - name: new branch
-        run: |
-          cd ${{ github.workspace }}/test
-          git branch test
-
-      - name: checkout
-        run: |
-          cd ${{ github.workspace }}/test
-          git checkout test
+#      - name: new branch
+#        run: |
+#          cd ${{ github.workspace }}/test
+#          git branch test
+#
+#      - name: checkout
+#        run: |
+#          cd ${{ github.workspace }}/test
+#          git checkout test
 
       - name: git update
         run: |
