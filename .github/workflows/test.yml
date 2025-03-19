@@ -31,7 +31,7 @@ jobs:
         run: ls ${{ github.workspace }}/test
 
       - name: add new dir
-        run: mkdir -p ${{ github.workspace }}/test/updatesite
+        run: mkdir -p ${{ github.workspace }}/test/updatesite/repository
 
       - name: check loc
         run: ls ${{ github.workspace }}/test
@@ -52,7 +52,7 @@ jobs:
          git status
 
       - name: copy files
-        run: cp ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/p2.index ${{ github.workspace }}/test/repository/p2.index
+        run: cp ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/p2.index ${{ github.workspace }}/test/updatesite/repository/p2.index
 
       - name: check loc
         run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/
@@ -61,4 +61,4 @@ jobs:
         run: ls ${{ github.workspace }}/test/
 
       - name: check loc
-        run: ls ${{ github.workspace }}/test/repository
+        run: ls ${{ github.workspace }}/test/updatesite/repository
