@@ -47,7 +47,9 @@ jobs:
          git remote show origin
 
       - name: check git command
-        run: ${{ github.workspace }}/test git status
+        run: |
+          cd ${{ github.workspace }}/test
+          git status
 
       - name: copy files
         run: cp ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/p2.index ${{ github.workspace }}/test/updatesite/repository/p2.index
@@ -60,3 +62,8 @@ jobs:
 
       - name: check loc
         run: ls ${{ github.workspace }}/test/updatesite/repository
+
+      - name: check git command
+        run: |
+          cd ${{ github.workspace }}/test
+          git status
