@@ -70,7 +70,7 @@ jobs:
           
       - name: new branch
         run: |
-          cd ${{ gitnub.workspace }}/test
+          cd ${{ github.workspace }}/test
           git branch test
 
 #      - name: git update
