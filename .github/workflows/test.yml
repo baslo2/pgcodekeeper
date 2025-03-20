@@ -94,10 +94,12 @@ jobs:
 #          cd ${{ github.workspace }}/test
 #          git checkout test
 
-#      - name: git update
-#        run: |
-#          cd ${{ github.workspace }}/test
-#          git add update
+      - name: git commands
+        run: |
+          cd ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/
+          git add update
+          git commit -m some test message
+          git push origin HEAD
 #
 #      - name: commit
 #        run: |
