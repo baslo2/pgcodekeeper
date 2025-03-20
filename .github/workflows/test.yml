@@ -41,7 +41,7 @@ jobs:
         run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/
 
       - name: copy updatesite
-        run: cp -R ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/ ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-expmple/update/
+        run: cp -R ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/ ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/update/
 
       - name: check loc
         run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-expmle/update
