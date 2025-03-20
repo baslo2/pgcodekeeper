@@ -35,7 +35,7 @@ jobs:
         run: mvn clean deploy -DskipTests
 
       - name: copy updatesite
-        run: cp -R ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/ ${{ github.workspace }}/deploy/tycho-expample/update/
+        run: cp -R ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/ ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-expample/update/
 
       - name: check loc
         run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-expamle/update
