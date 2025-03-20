@@ -35,6 +35,9 @@ jobs:
         run: mvn clean deploy -DskipTests
 
       - name: check loc
+        run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/
+
+      - name: check loc
         run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/
 
       - name: copy updatesite
