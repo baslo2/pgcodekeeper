@@ -40,11 +40,20 @@ jobs:
       - name: check loc
         run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/
 
-      - name: copy updatesite
-        run: cp -R ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/ ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/update/
+      - name: delete content in update folder
+        run: rm -R ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/update !(test.txt)
+
+      - name: check loc
+        run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/
 
       - name: check loc
         run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/update
+
+#      - name: copy updatesite
+#        run: cp -R ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/ ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/update/
+#
+#      - name: check loc
+#        run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/update
 
 #      - name: add new dir
 #        run: mkdir -p ${{ github.workspace }}/test/update/
@@ -94,15 +103,15 @@ jobs:
 #          cd ${{ github.workspace }}/test
 #          git checkout test
 
-      - name: Set prefix
-        run: echo "PREFIX=$(echo $"10.0.0")" >> $GITHUB_ENV
-
-      - name: git commands
-        run: |
-          cd ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/
-          git add update
-          git commit -m "some ${{ env.PREFIX }} test message"
-          git push origin HEAD
+#      - name: Set prefix
+#        run: echo "PREFIX=$(echo $"10.0.0")" >> $GITHUB_ENV
+#
+#      - name: git commands
+#        run: |
+#          cd ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/
+#          git add update
+#          git commit -m "some ${{ env.PREFIX }} test message"
+#          git push origin HEAD
 #
 #      - name: commit
 #        run: |
