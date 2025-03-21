@@ -41,7 +41,7 @@ jobs:
         run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/
 
       - name: delete content in update folder
-        run: rm -R ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/update !('test.txt')
+        run: rm -R ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/update !test.txt
 
       - name: check loc
         run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/
