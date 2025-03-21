@@ -108,13 +108,13 @@ jobs:
 
 #      - name: Set prefix
 #        run: echo "PREFIX=$(echo $"10.0.0")" >> $GITHUB_ENV
-#
-#      - name: git commands
-#        run: |
-#          cd ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/
-#          git add update
-#          git commit -m "some ${{ env.PREFIX }} test message"
-#          git push origin HEAD
+
+      - name: git commands
+        run: |
+          cd ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/
+          git add update
+          git commit -m "some ${{ env.PREFIX }} test message"
+          git push origin HEAD
 #
 #      - name: commit
 #        run: |
