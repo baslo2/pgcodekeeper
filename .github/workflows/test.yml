@@ -40,11 +40,16 @@ jobs:
       - name: check loc
         run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/
 
-      - name: copy file
-        run: cp ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/update/test.txt ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/test.txt
+#      - name: copy file
+#        run: cp ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/update/test.txt ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/updatesite/target/repository/test.txt
 
-      - name: delete content in update folder
-        run: rm -R ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/update
+#      - name: delete content in update folder
+#        run: rm -R ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/update
+
+      - name: clean update folder
+        run: |
+          cd ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/update
+          find . ! -name test.txt -delete
 
 #      - name: check loc
 #        run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/deploy/tycho-example/
