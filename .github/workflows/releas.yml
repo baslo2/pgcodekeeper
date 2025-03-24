@@ -43,7 +43,7 @@ jobs:
           MACOS_CERTIFICATE: ${{ secrets.MAC_CERT_P12 }}
           MACOS_CERTIFICATE_PWD: ${{ secrets.MAC_CERT_PASS }}
         run: |
-          base64 --decode -i /Users/runner/work/tycho-example/tycho-example/test/test.txt -o certificate.p12
+          base64 --decode -i ${{ github.workspace }}/test/test.txt -o certificate.p12
           echo "decode finished"
           security create-keychain -p "" build.keychain
           echo "crete keychain finished"
