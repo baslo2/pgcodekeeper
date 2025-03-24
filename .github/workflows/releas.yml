@@ -56,11 +56,32 @@ jobs:
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "" build.keychain
           security find-identity build.keychain
 
+      - name: download jre
+        run: |
+          echo "create dirs"
+          mkdir -P ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre
+          mkdir -P ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/x86
+          mkdir -P ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/aarch64
+          echo "dirs created"
+          echo "download jre"
+          curl -L -o ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/x86/jre.tar.gz https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.14%2B7/OpenJDK17U-jdk_x64_mac_hotspot_17.0.14_7.tar.gz
+          curl -L -o ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/aarch64/jre.tar.gz https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.14%2B7/OpenJDK17U-jre_aarch64_mac_hotspot_17.0.14_7.tar.gz
+          echo "jre downloaded"
+          echo "extract archive"
+          tar -xzf ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/x86/jre.tar.gz -C ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/x86/
+          tar -xzf ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/aarch64/jre.tar.gz -C ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/aarch64/
+          echo "archives extracted"
+          echo "rename dirs"
+          mv ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/x86/jdk-17.0.14+7-jre ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/x86/jre
+          mv ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/aarch64/jdk-17.0.14+7-jre ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/aarch64/jre
+          echo "dirs renamed"
+
       - name: build
         run: mvn verify -DskipTests -P deploy-github -Dkeystore=${{ github.workspace }}/tmp/keystore/key.jks
 
       - name: Set version
         run: echo "RELEASE_VERSION=$(echo ${GITHUB_REF#refs/*/} | cut -c 2-)" >> $GITHUB_ENV
+
 
       - name: Set prefix
         run: echo "PREFIX=$(echo $"pgCodeKeeper-")" >> $GITHUB_ENV
@@ -71,11 +92,28 @@ jobs:
       - name: set windows build name
         run: echo "WINDOWS_BUILD=${{ env.PREFIX }}${{ env.RELEASE_VERSION }}-win32.win32.x86_64.zip" >> $GITHUB_ENV
 
+      - name: set macos aarch64 build name
+        run:  echo "MACOS_AARCH_BUILD=${{ env.PREFIX }}${{ env.RELEASE_VERSION }}"-macosx.cocoa.aarch64.tar.gz" >> $GITHUB_ENV
+
+      - name: set macos x86 build name
+        run: echo "MACOS_X86_BUILD=${{ env.PREFIX }}${{ env.RELEASE_VERSION }}"-macosx.cocoa.x86_64.tar.gz" >> $GITHUB_ENV
+
       - name: set cli build name
         run: echo "CLI_BUILD=pgCodeKeeper-cli-${{ env.RELEASE_VERSION }}.zip" >> $GITHUB_ENV
 
+
       - name: set updatesite name
         run: echo "UPDATESITE=pgCodeKeeper-updatesite-${{ env.RELEASE_VERSION }}.zip" >> $GITHUB_ENV
+
+      - name: archive macos builds
+        run: |
+          cd ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/ru.taximaxim.codekeeper.rcp.product/macosx/cocoa/aarch64/
+          tar -cf ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/${{ env.MACOS_AARCH_BUILD }} Pgcodekeeper.app
+
+      - name: archive macos builds
+        run: |
+          cd ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/ru.taximaxim.codekeeper.rcp.product/macosx/cocoa/x86_64/
+          tar -cf ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/${{ env.MACOS_X86_BUILD }} Pgcodekeeper.app
 
       - name: Create GitHub Release
         id: create_release
@@ -105,6 +143,26 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/${{ env.WINDOWS_BUILD }}
+          asset_name: ${{ env.WINDOWS_BUILD }}
+          asset_content_type: application/zip
+
+      - name: Upload Release macos aarch build
+        uses: sekwah41/upload-release-assets@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/${{ env.MACOS_AARCH_BUILD }}
+          asset_name: ${{ env.WINDOWS_BUILD }}
+          asset_content_type: application/zip
+
+      - name: Upload Release macos x86 build
+        uses: sekwah41/upload-release-assets@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/${{ env.MACOS_X86_BUILD }}
           asset_name: ${{ env.WINDOWS_BUILD }}
           asset_content_type: application/zip
 
