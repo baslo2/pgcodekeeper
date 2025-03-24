@@ -78,7 +78,7 @@ jobs:
           echo "check loc"
           ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/aarch64/
           echo "rename dirs"
-          mv ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/x86/jdk-17.0.14+7-jre ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/x86/jre
+          mv ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/x86/jdk-17.0.14+7 ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/x86/jre
           mv ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/aarch64/jdk-17.0.14+7-jre ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/aarch64/jre
           echo "dirs renamed"
 
