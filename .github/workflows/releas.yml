@@ -78,8 +78,8 @@ jobs:
           echo "check loc"
           ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/aarch64/
           echo "rename dirs"
-          mv ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/x86/jdk-17.0.14+7 ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/x86/jre
-          mv ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/aarch64/jdk-17.0.14+7-jre ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/aarch64/jre
+          mv ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/x86/jdk-17.0.14+7/Contents ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/x86/jre
+          mv ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/aarch64/jdk-17.0.14+7-jre/Contents ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/aarch64/jre
           echo "dirs renamed"
           echo "remove archives"
           rm ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/mac_jre/x86/jre.tar.gz
@@ -121,12 +121,12 @@ jobs:
       - name: archive macos builds
         run: |
           cd ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/ru.taximaxim.codekeeper.rcp.product/macosx/cocoa/aarch64/
-          tar -cf ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/${{ env.MACOS_AARCH_BUILD }} Pgcodekeeper.app
+          tar -czf ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/${{ env.MACOS_AARCH_BUILD }} Pgcodekeeper.app
 
       - name: archive macos builds
         run: |
           cd ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/ru.taximaxim.codekeeper.rcp.product/macosx/cocoa/x86_64/
-          tar -cf ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/${{ env.MACOS_X86_BUILD }} Pgcodekeeper.app
+          tar -czf ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/${{ env.MACOS_X86_BUILD }} Pgcodekeeper.app
 
       - name: check loc
         run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/
