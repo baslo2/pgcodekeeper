@@ -159,7 +159,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/${{ env.MACOS_AARCH_BUILD }}
-          asset_name: ${{ env.WINDOWS_BUILD }}
+          asset_name: ${{ env.MACOS_AARCH_BUILD }}
           asset_content_type: application/zip
 
       - name: Upload Release macos x86 build
@@ -169,7 +169,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/${{ env.MACOS_X86_BUILD }}
-          asset_name: ${{ env.WINDOWS_BUILD }}
+          asset_name: ${{ env.MACOS_X86_BUILD }}
           asset_content_type: application/zip
 
       - name: Upload Release cli build
