@@ -127,7 +127,7 @@
                 <executions>
                     <execution>
                         <id>exec</id>
-                        <phase>verify</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -146,7 +146,7 @@
                     </execution>
                     <execution>
                         <id>exec2</id>
-                        <phase>verify</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -187,6 +187,7 @@
                 </configuration>
                 <executions>
                     <execution>
+                        <phase>verify</phase>
                         <id>archive-products</id>
                         <goals>
                             <goal>archive-products</goal>
