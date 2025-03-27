@@ -118,15 +118,15 @@ jobs:
       - name: check loc
         run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/
 
-      - name: archive macos builds
-        run: |
-          cd ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/ru.taximaxim.codekeeper.rcp.product/macosx/cocoa/aarch64/
-          tar -czf ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/${{ env.MACOS_AARCH_BUILD }} Pgcodekeeper.app
-
-      - name: archive macos builds
-        run: |
-          cd ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/ru.taximaxim.codekeeper.rcp.product/macosx/cocoa/x86_64/
-          tar -czf ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/${{ env.MACOS_X86_BUILD }} Pgcodekeeper.app
+#      - name: archive macos builds
+#        run: |
+#          cd ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/ru.taximaxim.codekeeper.rcp.product/macosx/cocoa/aarch64/
+#          tar -czf ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/${{ env.MACOS_AARCH_BUILD }} Pgcodekeeper.app
+#
+#      - name: archive macos builds
+#        run: |
+#          cd ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/ru.taximaxim.codekeeper.rcp.product/macosx/cocoa/x86_64/
+#          tar -czf ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/${{ env.MACOS_X86_BUILD }} Pgcodekeeper.app
 
       - name: check loc
         run: ls ${{ github.workspace }}/ru.taximaxim.codekeeper.mainapp/product/rcp/target/products/

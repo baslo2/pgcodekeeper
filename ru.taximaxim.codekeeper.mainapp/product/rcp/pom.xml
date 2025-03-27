@@ -12,7 +12,7 @@
 
     <groupId>ru.taximaxim.codeKeeper</groupId>
     <artifactId>ru.taximaxim.codekeeper.rcp.product</artifactId>
-    <version>15.0.47-SNAPSHOT</version>
+    <version>15.0.48-SNAPSHOT</version>
     <packaging>eclipse-repository</packaging>
 
     <repositories>
@@ -92,6 +92,35 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>tycho-p2-director-plugin</artifactId>
+                <version>${tycho.version}</version>
+                <configuration>
+                    <formats>
+                        <win32>zip</win32>
+                        <linux>tar.gz</linux>
+                        <macosx>tar.gz</macosx>
+                    </formats>
+                    <products>
+                        <product>
+                            <id>ru.taximaxim.codekeeper.rcp.product</id>
+                            <rootFolders>
+                                <macosx>Pgcodekeeper.app</macosx>
+                            </rootFolders>
+                            <archiveFileName>pgCodeKeeper-${unqualifiedVersion}</archiveFileName>
+                        </product>
+                    </products>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>materialize-products</id>
+                        <goals>
+                            <goal>materialize-products</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.2.1</version>
@@ -158,9 +187,8 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>materialize-products</id>
+                        <id>archive-products</id>
                         <goals>
-                            <goal>materialize-products</goal>
                             <goal>archive-products</goal>
                         </goals>
                     </execution>
