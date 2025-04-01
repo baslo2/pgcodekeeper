@@ -12,7 +12,7 @@
 
     <groupId>ru.taximaxim.codeKeeper</groupId>
     <artifactId>ru.taximaxim.codekeeper.rcp.product</artifactId>
-    <version>15.0.52-SNAPSHOT</version>
+    <version>15.0.53-SNAPSHOT</version>
     <packaging>eclipse-repository</packaging>
 
     <repositories>
@@ -91,7 +91,7 @@
                                         <argument>--verbose</argument>
                                         <argument>--sign</argument>
                                         <argument>admin</argument>
-                                        <argument>${macFolder}/aarch64/pgCodeKeeper.app</argument>
+                                        <argument>${mac.folder}/aarch64/pgCodeKeeper.app</argument>
                                     </arguments>
                                 </configuration>
                             </execution>
@@ -110,7 +110,7 @@
                                         <argument>--verbose</argument>
                                         <argument>--sign</argument>
                                         <argument>admin</argument>
-                                        <argument>${macFolder}/x86_64/pgCodeKeeper.app</argument>
+                                        <argument>${mac.folder}/x86_64/pgCodeKeeper.app</argument>
                                     </arguments>
                                 </configuration>
                             </execution>
